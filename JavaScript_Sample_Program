@@ -1,0 +1,511 @@
+Scnerio :01
+var value = 1234,
+    sum = 0; 
+    
+while (value) {
+    sum += value % 10;
+    value = Math.floor(value / 10);
+}
+
+console.log(sum);
+
+
+expected:
+1+2+3+4 =10
+
+output:
+10
+
+----------------------------------------
+scenerio:02:
+let arr = ['a','b',2,1,'c',10,2]
+expected output
+a
+after b thery have 2*1 =2
+bb
+after c they have 10*2 =20
+20times C will print 
+
+output like this
+abbcccccccccccccccccccc
+hint:
+regex we can able to achieve.
+----------------------------------------------------------------------------
+scnerio :03
+let arr =[{a:1},{b:2}]
+output:
+[{a:1,b:2}]
+
+solution:
+let res = Object.assign({},...arr)
+ output:
+[{a:1,b:2}]
+-------------------------------------------------------------------
+
+scenerio:04
+const str = "Hello World"
+str.split('').reverse().join("")
+output:
+'dlroWolleH'
+-------------------------------------------------------------------
+scernerio :05
+const originalObject = { a: 1, b: { c: 2 } };
+let shallowCopy ={...originalObject}
+shallowCopy.b.c =22
+
+console.log(shallowCopy)
+output:
+{
+    "a": 1,
+    "b": {
+        "c": 22
+    }
+}
+
+console.log(originalObject)
+output:
+{
+    "a": 1,
+    "b": {
+        "c": 22
+    }
+}
+
+when you update the shallowobject it will automatically update the  originalObject
+
+--------------------------------------------------------------------------------------------------------------
+
+scenerio 06:
+ 
+let deepCopy =JSON.parse(JSON.Stringify(originalObject))
+deepCopy.b.c =50
+
+console.log(deepCopy
+
+{
+    "a": 1,
+    "b": {
+        "c": 50
+    }
+}
+
+it will affect only deepObject not original object
+---------------------------------------------------------------------------------------------------
+
+Replace all the name as replace in js
+scnerio 07:
+let text = "Mr Blue has a blue house and a blue car";
+let result = text.replace(/blue/g, "red");
+console.log(result);
+
+Output:
+Mr Blue has a red house and a red car
+-----------------------------------------------------------------
+scnerio 08:
+let text1 = "sea";
+let text2 = "food";
+let result = text1.concat(" ",text2," ", "dfsf");
+console.log(result)
+
+output:
+sea food dfsf
+--------------------------------------------------
+scnerio:09
+let text = "Hello world";
+let result = text.endsWith("world2");
+
+it will  return true or false
+output:
+false
+-------------------------------------------------
+Scnerio 10:
+let text = "Hello world, welcome to the universe.";
+let result = text.includes("welcome");
+
+output:
+true
+------------------------------------
+scenerio: 13
+let text1 = "ab";
+let text2 = "ab";
+let result = text1.localeCompare(text2);
+
+it will check the two string and return the 0 or 1
+
+Output:
+0
+-------------------------------------
+Scenerio :12
+let text = "The rain in SPAIN stays mainly in rain  the rain";
+let result = text.match(/rain/gi);
+
+Output:
+[ 'rain', 'rain', 'rain' ]
+-----------------------------------
+scnerio:13
+let text = "5";
+let result = text = text.padStart(6,"0");
+
+output:
+000005
+-----------------------------------------------------------------
+scnerio :14
+let text = "5";
+let result = text = text.padEnd(6,"0");
+
+output:
+5000000
+---------------------------
+scnerio:15
+let text = "Hello world! ";
+let result = text.repeat(6);
+console.log(result)
+
+output:
+Hello world!Hello world!Hello world!Hello world!Hello world!Hello world!
+-------------------------------------------------------
+scnerio :16 : Finidng the ODD Number
+const odd = [];
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+arr.map(itm=>{
+    if(itm % 2 !==0){
+         odd.push(itm);
+    }
+})
+// for (const num of arr) {
+//     if (num % 2 !== 0) {
+//         odd.push(num);
+//     }
+// }
+console.log(odd);
+
+output:
+[ 1, 3, 5, 7, 9 ]
+
+-------------------------------------------------------------------
+scnerio:17
+finidng the Even Numbers
+const even = [];
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+arr.map(itm=>{
+    if(itm % 2 ==0){
+         even.push(itm);
+    }
+})
+// for (const num of arr) {
+//     if (num % 2 == 0) {
+//         even.push(num);
+//     }
+// }
+console.log(even);
+
+output:
+[ 2, 4, 6, 8 ]
+-------------------------------------------------------
+scnerio:18 check the value is prime number or not
+function isPrime(n) { 
+        // Corner case 
+        if (n <= 1) 
+            return false; 
+  
+        // Check from 2 to n-1 
+        for (let i = 2; i < n; i++) 
+            if (n % i == 0) 
+                return false; 
+  
+        return true; 
+    } 
+  
+    // Driver Code 
+  
+    isPrime(13)  
+        ? console.log("true")  
+        : console.log("false");
+
+output:
+true
+---------------------------------------------------
+scnerio:19  add the  toatal values in each elemnt
+ let array =  [1,2,3,4]
+let sum = 0; 
+
+/*Go through each item in the array and execute this function which adds
+each item to sum 
+*/
+  array.forEach(item => {
+    sum += item;
+  });
+
+  console.log(sum); 
+
+or 
+var arr= [1,2,3,4] 
+
+let updateArr = arr.reduce((prev,curr)=>prev + curr)
+console.log(updateArr)
+
+
+output:
+10
+------------------------------------------------
+scnerio:20 :remove the last value in the array
+const arrayOfNumbers = [1, 2, 3, 4];
+
+const previousSecondElementOfTheArray = arrayOfNumbers.pop()
+console.log(arrayOfNumbers); 
+
+outpit:
+[ 1, 2, 3 ]
+---------------------------------------------------------
+scnerio:21 remove the first elemnent in the array
+
+const arrayOfNumbers = [1, 2, 3, 4];
+
+const previousSecondElementOfTheArray = arrayOfNumbers.shift()
+console.log(arrayOfNumbers); 
+
+outpit:
+[ 2,3,4 ]
+---------------------------------------------------------
+scnerio:22: in array between remove the value
+
+
+const arrayOfNumbers = [1, 2, 3, 4];
+
+const previousSecondElementOfTheArray = arrayOfNumbers.splice(1, 1);
+console.log(arrayOfNumbers); 
+
+output:
+[1, 3, 4]
+---------------------------
+scnerio 23
+const books = [
+    { title: "C++", author: "Bjarne" },
+    { title: "Java", author: "James" },
+    { title: "Python", author: "Guido" },
+    { title: "Java", author: "James" },
+];
+
+let uniqueArr = books.filter((obj,index)=>{
+    return index === books.findIndex(item=> obj.title == item.title)
+})
+console.log(uniqueArr)
+
+output:
+[
+  { title: 'C++', author: 'Bjarne' },
+  { title: 'Java', author: 'James' },
+  { title: 'Python', author: 'Guido' }
+]
+---------------------------------------------------------------------
+scnerio:24
+var array = [1,3,2,1,3,4,5,6,7,3,5,6,4,3]
+let output =[]
+for(let item of array){
+    if(!output.includes(item)){
+        output.push(item)
+    }
+}
+console.log(output)
+
+output:
+ [
+  1, 3, 2, 4,
+  5, 6, 7
+]		
+------------------------------------------------------------------------
+Scnerio :25 checking the two array with same index 
+
+let a =[5,17,9,7],b=[3,8,11,2]
+let aliceInit = 0 , bobInit =0
+a.map((item,index)=>{
+    if(a[index] > b[index]){
+      aliceInit++
+    }else if(a[index] < b[index]){
+       bobInit++
+    }
+   
+})
+ //.log(aArr,bArr)
+let concatArr = [aliceInit].concat([bobInit])
+    console.log(aliceInit,bobInit,concatArr)
+
+output:
+ 	[ 3, 1 ]
+
+----------------------------------------------------
+scnerio :26 large int added
+let arr =[1000000001,1000000002,1000000003,1000000004,1000000005]
+let combinedArr = arr.reduce((prev,curr)=> prev+curr)
+console.log(combinedArr)
+
+output:
+5000000015
+-------------------------------------------------
+scnerio :27 : diagnoal value added
+
+function sumOfDiagonals(matrix) {
+//  console.log(matrix.length)
+ let totalCount = matrix.length
+ let diagonalSum =0 , counterDiagonalSum =0
+ matrix.map((item,index)=>{
+     item.map((obj,inx)=>{
+         console.log(inx +index ,totalCount-1)
+         if (inx == index){
+             diagonalSum += obj
+         }
+          if(inx + index == totalCount - 1){
+              counterDiagonalSum += obj
+          }
+     })
+ })
+ 
+  console.log("sum of diagonal elements --- ", diagonalSum)
+  console.log("sum of counter diagonal elements ---", counterDiagonalSum)
+}
+sumOfDiagonals([
+  [1, 8, 7],
+  [2, 10, 6],
+  [3, 4, 5]
+]);
+
+output:
+sum of diagonal elements ---  16
+sum of counter diagonal elements --- 20
+---------------------------------------------------------------
+Scnerio: 28  getting the how many postive value and negative value and zero value and then divide by number,which is given by 
+team.
+arr = [-4, 3, -9, 0, 4, 1] ,onlyPostiveValue =0, n=6,onlyNegativeValue =0,onlyZero = 0,final = []
+arr.map((item,index)=>{
+    if(item>0){
+        onlyPostiveValue++ 
+    }
+      if(item<0){
+        onlyNegativeValue++
+    }
+    
+     if(item == 0){
+        onlyZero++
+    }
+    // if(arr.length == index +1){
+    // let pos = onlyPostiveValue/n,neg = onlyNegativeValue / n,zero =onlyZero /n
+    // final.push(...[pos],...[neg],...[zero])
+    // }
+})
+// console.log(final)
+let pos = onlyPostiveValue/n,neg = onlyNegativeValue / n,zero =onlyZero /n
+console.log(pos.toFixed(n),neg.toFixed(n),zero.toFixed(n))
+
+output:
+0.500000 0.333333 0.166667
+
+-----------------------------------------------------------
+scnerio: 29 first letter of the array should be a caps
+
+const names = ["alice", "bob", "charlie", "danielle"]
+    
+    
+    const capitalized = names.map((name) => {
+        return name[0].toUpperCase() + name.slice(1)
+    })
+    
+    console.log(capitalized)
+
+output:
+[ 'Alice', 'Bob', 'Charlie', 'Danielle' ]
+-----------------------------------------------------------
+scenrio : 30 let arr =[] , n=6
+
+for(i=0;i<n;i++){
+    let initHash = "#".repeat(n)
+    // console.log(initHash)
+    let slicedInit = initHash.slice(0,i+1)
+    // console.log(slicedInit)
+    let padStartInit = slicedInit.padStart(n)
+    console.log(padStartInit)
+    arr.push(padStartInit)
+}
+console.log(arr)
+
+output:
+     #
+    ##
+   ###
+  ####
+ #####
+######
+[ '     #', '    ##', '   ###', '  ####', ' #####', '######' ]
+
+or
+
+let arr =[] , n=6
+
+for(i=0;i<n;i++){
+    let initHash = "#".repeat(n).slice(0,i+1).padStart(n)
+    console.log(initHash)
+    arr.push(initHash)
+}
+console.log(arr)
+
+output:
+     #
+    ##
+   ###
+  ####
+ #####
+######
+[ '     #', '    ##', '   ###', '  ####', ' #####', '######' ]
+------------------------------------------------------------------------
+
+scnerio :31 
+let arr =[1,2,3,4,5],final=[]
+
+arr.map((item,index)=>{ 
+    let deepCopy =JSON.parse(JSON.stringify(arr))
+     let spliceArr = deepCopy.splice(index,1)
+      let updateArr = deepCopy.reduce((prev , curr)=> prev +curr)
+      console.log(updateArr)
+     final.push(...[updateArr])
+})
+ final.sort();
+//final.reverse();
+let lastElement = final.splice(-1)
+ let firstElement = final[0]
+console.log(final)
+
+output:
+14
+13
+12
+11
+10
+[ 14, 13, 12, 11, 10 ]
+------------------------------------------------------------------------
+scnerio :32
+let arr =[3,2,1,3,44,5,5,3,44,5,44,1],count =0,minCounter=0
+let max = Math.max(...arr)
+let min=Math.min(...arr)
+
+console.log(max,min)
+
+//Maximum value and minimum count
+arr.map(item=>{
+    if(item == max){
+      count++
+    }
+    if(item ==  min){
+        minCounter++
+    }
+    
+})
+console.log(count,minCounter)
+
+output:
+44 1
+3 2
+
+
+
+
