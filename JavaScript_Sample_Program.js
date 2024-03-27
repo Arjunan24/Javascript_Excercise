@@ -30,7 +30,7 @@ output like this
 abbcccccccccccccccccccc
 hint:
 regex we can able to achieve.
-----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 scnerio :03
 let arr =[{a:1},{b:2}]
 output:
@@ -40,14 +40,14 @@ solution:
 let res = Object.assign({},...arr)
  output:
 [{a:1,b:2}]
--------------------------------------------------------------------
+// -------------------------------------------------------------------
 
 scenerio:04
 const str = "Hello World"
 str.split('').reverse().join("")
 output:
 'dlroWolleH'
--------------------------------------------------------------------
+// -------------------------------------------------------------------
 scernerio :05
 const originalObject = { a: 1, b: { c: 2 } };
 let shallowCopy ={...originalObject}
@@ -71,7 +71,7 @@ output:
     }
 }
 
-when you update the shallowobject it will automatically update the  originalObject
+//when you update the shallowobject it will automatically update the  originalObject
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -80,7 +80,7 @@ scenerio 06:
 let deepCopy =JSON.parse(JSON.Stringify(originalObject))
 deepCopy.b.c =50
 
-console.log(deepCopy
+console.log(deepCopy)
 
 {
     "a": 1,
@@ -89,11 +89,11 @@ console.log(deepCopy
     }
 }
 
-it will affect only deepObject not original object
+//it will affect only deepObject not original object
 ---------------------------------------------------------------------------------------------------
 
-Replace all the name as replace in js
-scnerio 07:
+//Replace all the name as replace in js
+//scnerio 07:
 let text = "Mr Blue has a blue house and a blue car";
 let result = text.replace(/blue/g, "red");
 console.log(result);
@@ -130,7 +130,7 @@ let text1 = "ab";
 let text2 = "ab";
 let result = text1.localeCompare(text2);
 
-it will check the two string and return the 0 or 1
+// it will check the two string and return the 0 or 1
 
 Output:
 0
@@ -459,12 +459,12 @@ output:
 [ '     #', '    ##', '   ###', '  ####', ' #####', '######' ]
 ------------------------------------------------------------------------
 
-scnerio :31 
+scnerio :31  remove each index value and add entire array
 let arr =[1,2,3,4,5],final=[]
 
 arr.map((item,index)=>{ 
     let deepCopy =JSON.parse(JSON.stringify(arr))
-     let spliceArr = deepCopy.splice(index,1)
+        deepCopy.splice(index,1)
       let updateArr = deepCopy.reduce((prev , curr)=> prev +curr)
       console.log(updateArr)
      final.push(...[updateArr])
@@ -505,7 +505,238 @@ console.log(count,minCounter)
 output:
 44 1
 3 2
+----------------------------------------------
+scnerio:33
+let timeString ='07:05:45PM'
+let checkString = timeString.endsWith("PM")
+const [hour, minute,seconds] = timeString.split(':'); 
+let formattedHour = parseInt(hour); 
+ let sec = seconds.replace("PM"," ")
+if(checkString){
+   formattedHour += 12;
+}
+ console.log( `${formattedHour}:${minute}:${sec}`) 
+
+ output:
+ 19:05:45 
+
+ or 
+
+ let timeString ='07:05:45 PM'
+let [time,period] = timeString.split(" ")
+const [hour, minute,seconds] = time.split(':'); 
+let formattedHour = parseInt(hour); 
+
+ console.log(time,period)
+ 
+if(period =="PM"){
+   formattedHour += 12;
+}
+ console.log( `${formattedHour}:${minute}:${seconds}`) 
+
+ output:
+07:05:45 PM
+19:05:45
+
+or
+
+let timeString ='12:45:54PM'
+
+// let timeString = s
+let checkString = timeString.endsWith("PM")
+const [hour, minute,seconds] = timeString.split(':'); 
+let formattedHour = parseInt(hour); 
+let sec 
+if(checkString){
+     if( formattedHour == 12){
+         formattedHour = "12"
+     }else{
+         formattedHour += 12;
+     }
+   sec = seconds.replace("PM"," ")
+}else{
+    if( formattedHour == 12){
+      formattedHour = "00"
+    }else{
+         formattedHour = hour
+    }
+     sec = seconds.replace("AM"," ")
+}
+let timeChanged = `${formattedHour}:${minute}:${sec}`
+ console.log(timeChanged)
+ return timeChanged 
+
+output:
+
+12:45:54
+  
+
+---------------------------------------------------------
+scnerio:34 get only duplicates in one array
+
+let ar = [10, 20, 20, 10, 10, 30, 50, 10,20],count =0,range=[]
+
+ar.map(item=>{
+     let matchArr = ar.filter(it=>it == item)
+    if(range.length == 0){
+        range.push(matchArr)
+    }else{
+        let checkingArr = range.some(obj=>obj.includes(item))
+        if(!checkingArr){
+             range.push(matchArr)
+        }
+    }
+})
+let n=0
+range.map((item,index)=>{
+    console.log(item)
+
+let cc = item.length /2
+console.log(cc)
+if(cc >= 1){
+     count += cc
+    
+}
 
 
 
+    // let splcieArr = item.slice(n,index+2)
+    // console.log(splcieArr)
+    // if(splcieArr.length ==2){
+    // // n=index+2
+    // count++
+    // n=index +1
+    // }
+    // item.map(obj=>{
+    //     if(obj<2){
+    //         count++
+    //     }
+    // })
+})
 
+
+console.log(Math.floor(count))
+----------------------------------------------
+scnerio:35 swapping between two valueslet a = prompt('Enter the first variable: ');
+let b = prompt('Enter the second variable: ');
+
+//create a temporary variable
+let temp;
+
+//swap variables
+temp = a;
+a = b;
+b = temp;
+
+console.log(`The value of a after swapping: ${a}`);
+console.log(`The value of b after swapping: ${b}`);
+
+output:
+Enter the first variable: 4
+Enter the second variable: 2
+The value of a after swapping: 2
+The value of b after swapping: 4
+
+or
+let a=10, b=20;
+
+[a, b] = [b, a];
+console.log(a,b)
+
+output:
+20 10
+---------------------------------------------------
+
+Scnerio:36 palindrome
+
+function isPalindrome(str) {
+    let rev = str.split("").reverse().join("");
+  
+    if (rev == str) {
+        return true
+    }
+    return false
+ 
+}
+ 
+let str1 = "racecar";
+let str2 = "nitin";
+let str3 = "Rama";
+ 
+console.log(isPalindrome(str1));
+console.log(isPalindrome(str2));
+console.log(isPalindrome(str3));
+
+----------------------------------------------------
+scnerio 37
+var peaks = [
+    {intervalId: 7, time: 1520290800000, value: 54.95125000000001},
+    {intervalId: 7, time: 1520377200000, value: 49.01083333333333}
+  ];
+  
+  const maxPeak = peaks.reduce((p, c) => p.value > c.value ? p : c);
+  
+  console.log(maxPeak);
+  output:
+  {
+    "intervalId": 7,
+    "time": 1520290800000,
+    "value": 54.95125000000001
+  }
+
+  or 
+  var peaks = [{ intervalId: 7, time: 1520290800000, value: 54.95125000000001 }, { intervalId: 7, time: 1520377200000, value: 49.01083333333333 }]
+    max = Math.max(...peaks.map(({ value }) => value)),
+    object = peaks.find(({ value }) => value === max);
+
+console.log(max);
+console.log(object);
+54.95125000000001
+{
+  "intervalId": 7,
+  "time": 1520290800000,
+  "value": 54.95125000000001
+}
+-------------------------------------------------------
+scnerio 38
+console.log(sum(2,3))
+console.log(sum(2)(3,8))
+function sum(x,y,z){
+   if(y == undefined){
+       return (a,b) =>{
+           console.log(a,b)
+          return a+x
+       }
+   }
+   return x+y
+}
+
+output
+3 8
+5
+------------------------------------------------
+scnerio 39
+let arr =[7,3,5,6,3,5,9]
+
+let final=[]
+arr.map(item=>{
+    let filter = arr.filter(obj => obj == item)
+    let json={}
+         json["value"] = item
+         json["count"] = filter.length
+    final.push(json)
+})
+
+let uniqueArr = final.filter((obj,index)=>{
+    return index === final.findIndex(item=> item.value == obj.value)
+})
+console.log(uniqueArr)
+
+output:
+[
+    { value: 7, count: 1 },
+    { value: 3, count: 2 },
+    { value: 5, count: 2 },
+    { value: 6, count: 1 },
+    { value: 9, count: 1 }
+  ]
