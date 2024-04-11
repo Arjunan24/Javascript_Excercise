@@ -1,0 +1,114 @@
+store - 
+pdt full info- add to store
+{id:1,
+quantity:2,
+category:
+}
+
+{123:1}
+
+reducer-
+
+quantity add -store update
+
+const staticData = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'French Onion',
+    quantity: '100g',
+    // imgSrc: require('../../assets/images/french_onion.png'),
+    price: 10,
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Almond Butter',
+    quantity: '120g',
+    // imgSrc: require('../../assets/images/almond_butter.png'),
+    price: 20,
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Ranch Dressing',
+    quantity: '500g',
+    // imgSrc: require('../../assets/images/ranch_dressing.png'),
+    price: 140,
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d73',
+    title: 'Tomato Sauce',
+    quantity: '10g',
+    // imgSrc: require('../../assets/images/tomato_sauce.png'),
+    price: 62,
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d74',
+    title: 'Grillos Pickel',
+    quantity: '75g',
+    // imgSrc: require('../../assets/images/grillos_pickel.png'),
+    price: 25,
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d75',
+    title: 'Mayonaise',
+    quantity: '50g',
+    // imgSrc: require('../../assets/images/mayonaise.png'),
+    price: 100,
+  },
+];
+
+let selectedId="58694a0f-3da1-471f-bd96-145571e29d75"
+
+let filteredData=staticData.filter(item=> item.id ===selectedId)
+
+let 
+
+
+let a=[{
+    id: '58694a0f-3da1-471f-bd96-145571e29d75',
+    title: 'Mayonaise',
+    quantity: '50g',
+    // imgSrc: require('../../assets/images/mayonaise.png'),
+    price: 100,
+  },];
+  let b
+  
+  
+  
+  
+staticData.forEach(item=>{
+ if(item.id === selectedId){
+     let res= item;
+ if(res){
+  a.push(item)
+ }else{
+  b.push(item)
+ }
+ }
+  })
+  console.log(a,b)
+//   return;
+
+// // console.log(filteredData)
+// let addingQuantityCart =0;
+// let getTotalArr =[ {
+//     id: '58694a0f-3da1-471f-bd96-145571e29d75',
+//     title: 'Mayonaise',
+//     quantity: '50g',
+//     // imgSrc: require('../../assets/images/mayonaise.png'),
+//     price: 100,
+//   },];
+  
+// //   getTotalArr.map()
+  
+  
+  
+  
+  
+  
+  
+// if(!getTotalArr){
+//   getTotalArr.push(filteredData)
+//  }else{
+//   getTotalArr.push(filteredData)
+//  }
+// console.log(getTotalArr)

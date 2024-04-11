@@ -1,0 +1,39 @@
+let sample = "24";
+let totalArr=[{firstName:"arjun",lastName:"sankar",age:22},{firstName:"abc",lastName:"hello",age:24}]
+let dd=[]
+
+
+
+function
+--------------------------------------
+
+Method 01
+------------------------------------------------------------------------------
+totalArr.map((item,index)=>{
+    let object = item
+    for (var prop in object) { 
+                if (object.hasOwnProperty(prop)) { 
+                    if (object[prop].toString() === sample.toString()) 
+                    dd.push(item) ; 
+                } 
+            } 
+})
+------------------------------------------------------------------------------------------------
+Method 02
+----------------------------------------------------------
+totalArr.map((item,index)=>{
+    let object = item
+ Object.keys(object).filter(key=> {
+       if(object[key] == sample){
+           dd.push(object)
+       }})
+})
+----------------------------------------------------------
+
+
+ console.log(dd)
+
+
+
+Output:
+[{firstName:"abc",lastName:"hello",age:24}]
