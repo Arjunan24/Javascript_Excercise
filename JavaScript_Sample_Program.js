@@ -48,6 +48,7 @@ str.split('').reverse().join("")
 output:
 'dlroWolleH'
 // -------------------------------------------------------------------
+//shallow copy
 scernerio :05
 const originalObject = { a: 1, b: { c: 2 } };
 let shallowCopy ={...originalObject}
@@ -732,6 +733,8 @@ let uniqueArr = final.filter((obj,index)=>{
 })
 console.log(uniqueArr)
 
+
+
 output:
 [
     { value: 7, count: 1 },
@@ -740,3 +743,1227 @@ output:
     { value: 6, count: 1 },
     { value: 9, count: 1 }
   ]
+  -------------------------------------------
+  scnerio 40 spread operator example
+  let student={
+    name:"arjun",
+    age:27,
+    address: ""
+  }
+  let studentNameUpdate = {...student,name:"rrr"}
+  console.log(studentNameUpdate)
+//   or
+  let {name,...rest} = student
+    console.log(name,rest)
+
+output:
+{ name: 'rrr', age: 27, address: '' }
+arjun { age: 27, address: '' }
+-------------------------------------
+scnerio 41 : curried functionconsole.log(sum(4)(5)(6));
+
+function sum(x){
+    return y =>{
+        return z =>{
+            return x+y+z
+        }
+    }
+}
+
+output:
+15
+-------------------------
+scnerio 42: 
+const a={x:1,y:2};
+const b = a;
+b.x=3
+console.log(a)
+console.log(b)
+
+output:
+{ x: 3, y: 2 }
+{ x: 3, y: 2 }
+-----------------------------
+scnerio 43 :
+let a =20
+var a =10
+console.log(a)
+
+output:
+Identifier 'a' has already been declared
+-----------------------
+scnerio:44
+var length =10
+function fn(){
+    console.log(this.length)
+}
+var obj={
+    length:5,
+    method:function(fn){
+        fn() //first it will execute
+        arguments[0]() //second it will the arguments
+    }
+}
+obj.method(fn,1)
+
+output:
+10
+2
+-------------------------
+scnerio:45
+function add (params={}){
+    let obj={
+        name:"arjun",
+        age:29
+    }
+    let adding =Object.assign({},obj,params)
+    console.log(typeof adding)
+}
+add()
+
+solution
+copy of the two objects and assing to the adding variable
+---------------
+scnerio:46
+let arr =[1,2,3,4]
+let res = arr.reverse()
+output:
+[4,3,2,1]
+
+or 
+
+let reversed = arr.reduceRight((acc,ele)=>{acc.push(ele) return acc},[])
+console.log(reversed)
+----------------------
+scnerio:47
+let arr =[1,2, [3,4,[5,6],[7,8]]]
+console.log(arr.flat(3))
+output:
+[
+    1, 2, 3, 4,
+    5, 6, 7, 8
+  ]
+  ---------------------
+  scnerio:48
+  let memoziedValue = {}
+
+function adding (num){
+    if(num in memoziedValue){
+        console.log('memozied value')
+        return memoziedValue[num]
+    }
+    else{
+        console.log("Adding...")
+        memoziedValue[num]= num+2
+        return memoziedValue[num]
+    }
+}
+
+console.log(adding(2))
+console.log(adding(2))
+console.log(adding(2))
+console.log(adding(2))
+
+output:
+Adding...
+4
+memozied value
+4
+memozied value
+4
+memozied value
+4
+------------------
+scnerio:49
+// polyfill of foreach in array
+let array = [1,3,4,4,5]
+
+Array.prototype.myForEach = function(callback){
+    for(i =0;i<this.length;i++){
+        callback(this[i],i,this)
+    }
+}
+
+array.myForEach((item,value,arr)=>{
+    console.log(item,value,arr)
+})
+
+console.log(Object.getOwnPropertyNames(Array.prototype))
+
+output:
+1 0 [ 1, 3, 4, 4, 5 ]
+3 1 [ 1, 3, 4, 4, 5 ]
+4 2 [ 1, 3, 4, 4, 5 ]
+4 3 [ 1, 3, 4, 4, 5 ]
+5 4 [ 1, 3, 4, 4, 5 ]
+[
+  'length',      'constructor',    'concat',
+  'copyWithin',  'fill',           'find',
+  'findIndex',   'lastIndexOf',    'pop',
+  'push',        'reverse',        'shift',
+  'unshift',     'slice',          'sort',
+  'splice',      'includes',       'indexOf',
+  'join',        'keys',           'entries',
+  'values',      'forEach',        'filter',
+  'flat',        'flatMap',        'map',
+  'every',       'some',           'reduce',
+  'reduceRight', 'toLocaleString', 'toString',
+  'at',          'findLast',       'findLastIndex',
+  'myForEach'
+]
+--------------------------
+scnerio:50
+//Eval in js - inside the eval it takes the argument so it will print 10 value
+let a = 10
+console.log(eval("a"))
+
+ouput:
+10
+----------------------------
+scnerio:51
+//For each does not have break and stop in between the loops
+let num =[1,2,3,4,5]
+console.log("FOR Each:")
+num.forEach(item=>{
+    console.log(item)
+    if(item == 2){
+        return
+    }
+})
+
+//if you want to aicheve to stop the loop means you have multiple option 
+//for..of,for..in,foretc..
+console.log("For Of")
+for(const item of num){
+    console.log(item)
+    if(item == 2){
+        return
+    }
+}0
+
+
+output:
+FOR Each:
+1
+2
+3
+4
+5
+For Of
+1
+2
+------------------------
+scnerio:52 generator function
+function NotAgenerator(){
+    return 10;
+    return 20;
+}
+var result = NotAgenerator()
+console.log(result)
+
+//Now it will print only first value 
+ouput:
+10
+
+//Now we want both the values means we need  use genetor
+
+function* generator(){
+    yield 10;
+    yield 20;
+}
+var result = generator()
+console.log(result.next())
+console.log(result.next())
+
+output:
+{value:10,done:false}
+{value:20,done:false}
+-----------------------
+scnerio:53 
+let arr =["hello","hi","hello","javascript","hi"]
+
+let countWord ={}
+arr.forEach((word)=>{
+    if(word in countWord){
+        countWord[word]++
+    }else{
+         countWord[word] =1
+    }
+})
+console.log(countWord)
+
+Output:
+{ hello: 2, hi: 2, javascript: 1 }
+-----------------------
+scnerio :54
+let person ={
+    name:"arjun",
+    age:50
+}
+let res =Object.entries(person)
+console.log(res)
+
+// or
+
+let ObjKeys =Object.keys(person)
+console.log(ObjKeys)
+
+let final = ObjKeys.map(key=>{
+    let val = person[key]
+    return [ key,val]
+})
+console.log(final)
+
+Output:
+[ [ 'name', 'arjun' ], [ 'age', 50 ] ]
+[ 'name', 'age' ]
+[ [ 'name', 'arjun' ], [ 'age', 50 ] ]
+-----------------------------
+scnerio:55 : dangerouslySetInnerHTML elemnent use
+let data ="<h1>Hello</h1>"
+export default function HelloFunction(){
+    return <div dangerouslySetInnerHTML={{__html:data}}/>
+}
+Output:
+UI : Hello
+---------------------------
+scnerio:56 to check the string character how many times present
+const maxWord = (str)=>{
+    let obj ={}
+    for(let char of str){
+        !obj[char]? obj[char] =1 :obj[char]++
+    }
+    console.log(obj)
+    let maxNum = 0, maxChar =''
+    for(let char in obj){
+        if(obj[char] >= maxNum){
+            maxNum = obj[char];
+            maxChar =char
+        }
+    }
+    console.log(maxNum,maxChar)
+}
+maxWord("hellowwwsh")
+
+output:
+{ h: 2, e: 1, l: 2, o: 1, w: 3, s: 1 }
+3 w
+----------------------------------------------------
+scnerio:57
+console.log([]== '') //true
+console.log([]== {}) //false
+console.log([]== []) //false
+console.log([].length== 1) //false
+console.log([1,2]== [1,2]) //false
+console.log([].length == 0) //true
+--------------------------
+scnerio 58
+const user1={
+    name:'arjun',
+    age:25
+}
+const user2 = user1
+
+user2.name ="mano"
+user2.age=33
+
+console.log(user1)
+console.log(user2)
+
+output:
+{ name: 'mano', age: 33 }
+{ name: 'mano', age: 33 }
+-------------------------------
+Scnerio:59 first letter only caps
+function capsLetter (str){
+    let strVal = str.split(" ")
+   let final =  strVal.map((char,index)=>{
+        return char.slice(0,1).toUpperCase() + char.slice(1)
+        // console.log(char.slice(0,1).toUpperCase() + char.slice(1))
+    })
+    let str1 = final.toString()
+    console.log(str1.replaceAll(','," " ))
+}
+capsLetter('hi i am arjun')
+
+output:
+Hi I Am Arjun
+-------------------------------------------------
+scnerio:60 cllback function examples
+// function
+function greet(name, callback) {
+    console.log('Hi' + ' ' + name);
+    callback();
+}
+
+// callback function
+function callMe() {
+    console.log('I am callback function');
+}
+
+// passing function as an argument
+greet('Peter', callMe);
+
+output:
+Hi Peter
+I am callback function
+--------------------------------------
+scnerio:61 
+var y = [1, 2, 3, 4];
+
+for (var i = 0; i < y.length; i++) {
+    if (y[i] == 2) {
+        continue;
+    }
+
+    console.log(y[i]);
+}
+
+output:
+1
+3
+4
+-----------------------------------
+scnerio :62 
+// const array = [10, 40, 'a', 10, 87, 'a' ]
+// let duplicateArrRemove = [...new Set(array)]
+// console.log(duplicateArrRemove)
+
+function objChangeValue(str,inx,val){
+    let checkingInx =[]
+  let OnlyInx =  Object.values(str).map((item,index)=>{
+    if(item == inx){
+        checkingInx.push(index)
+    }
+    })
+    
+     Object.keys(str).map((obj,i)=>{
+          if(i == checkingInx[0]){
+              str[obj] = val
+          }
+      })
+    console.log(str)
+}
+objChangeValue({
+a: 1,
+b: 2,
+c: 3 },2,5)
+
+output:
+{ a: 1, b: 5, c: 3 }
+-------------------------
+scnerio:63
+[22:27] Damanpreet Kaur
+greet1();
+greet2();
+greet3();
+greet4();
+function greet1() {
+console.log("HELLO");
+
+
+var greet2 = function () {
+console.log("HELLO"); }
+    
+    
+    
+}
+
+
+
+let greet3 = function () {
+console.log("HELLO");
+
+
+const greet4 = function () {
+console.log("HELLO"); }
+    
+}
+
+output:
+greet1 is excute and greet2 is not there so you will get error.
+
+------------------------------------------
+scnerio:64 find only duplicate value
+let arrNUm =[1,2,3,4,5,2,3]
+let duplicateNum = arrNUm.filter((ele,index,arr)=>arr.indexOf(ele) !== index)
+console.log(duplicateNum)
+
+output:
+[ 2, 3 ]
+----------------------------------
+scnerio:65 remove duplicate arrayOfNumbers
+let arrNUm =[1,2,3,4,5,2,3]
+let duplicateNum = arrNUm.filter((ele,index,arr)=>arr.indexOf(ele) == index)
+console.log(duplicateNum)
+
+output:
+[1,2,3,4,5]
+----------------------
+scnerio:66 find the second largest Number
+const arr = [12, 35, 10, 35, 10, 34, 1,55,44,95,33,2]; 
+
+function secondLargestNUmber(arr,num){
+    arr.sort()
+    console.log(arr)
+    let arrLength = arr.length
+    for(let i = arrLength - num;i>=0;i--){
+        if(arr[i] !== arr[arrLength-num]){
+           return arr[i] 
+        }
+    }
+}
+console.log("SecondLargest NUmber is : ",secondLargestNUmber(arr,1))
+
+output:
+[
+    1, 10, 10, 12,  2,
+   33, 34, 35, 35, 44,
+   55, 95
+ ]
+ SecondLargest NUmber is :  55
+or
+const arr = [12, 35, 10, 35, 10, 34, 1,55,44,95,33,2]; 
+
+function secondLargestNUmber(arr,num){
+  arr.sort()
+  const arrLength =  arr.length
+ const update =  arr.filter((item,index)=>{
+      if(index === arrLength - num){
+          console.log(item)
+          return item
+      }
+  })
+  return update
+}
+console.log("SecondLargest NUmber is : ",secondLargestNUmber(arr,2))
+
+55
+SecondLargest NUmber is :  [ 55 ]
+
+// or
+// second smallest number
+const arr = [12, 35, 10, 35, 10, 34, 1,55,44,95,33,2]; 
+
+function secondSmallestNUmber(arr,num){
+  arr.sort().reverse()
+  const arrLength =  arr.length
+ const update =  arr.filter((item,index)=>{
+      if(index === arrLength - num){
+          console.log(item)
+          return item
+      }
+  })
+  return update
+}
+console.log("SecondSmallest NUmber is : ",secondSmallestNUmber(arr,2))
+o/p:
+2
+
+
+or
+const array = [2, 6, 0, 5, 1, 9, 4];
+
+function secondLowestNumber(arr,num){
+    
+    
+    arr.sort().reverse()
+    
+    
+    arr.filter((item,index)=>{
+        if(index == arr.length - num){
+            console.log(item)
+        }
+    })
+    
+    
+    
+    let arrpush =[]
+    for(let i =0 ; i<arr.length;i++){
+        for(let j=0;j<num;j++){
+            if(arr.indexOf(i)>arr.lastIndexOf(j)){
+                if(arrpush.indexOf(j) ==-1){
+                arrpush.push(j)
+                }
+                
+            }
+        }
+    }
+
+    console.log(arrpush[1])
+    
+}
+
+secondLowestNumber(array,3)
+
+
+
+
+
+
+
+ -------------------------------------------------------
+ scnerio:67 find the missing element in array
+ let arr= [1,2,4,5,6,8,10]
+
+let minVal = Math.min(...arr)
+let maxVal = Math.max(...arr),fin =[]
+
+for(let i = minVal; i<maxVal;i++){
+    if(arr.indexOf(i)<0){
+      fin.push(i)
+    }
+}
+console.log(fin)
+
+
+output:
+[ 3, 7, 9 ]
+------------------------------------
+scnerio:68 factorail number 
+// eg: input is 5 Means -> 1*2*3*4*5 =120
+//factorial number
+let inputNUmber =5
+let fact = 1
+
+for(let i=1;i<= inputNUmber;i++){
+    console.log(fact,i)
+    fact *= i
+}
+
+console.log(`Factorial Number of ${inputNUmber} is ${fact}`)
+
+output:
+1 1
+1 2
+2 3
+6 4
+24 5
+Factorial Number of 5 is 120
+---------------------------------------
+scnerio:69 -vowels checking
+let str ="rjin"
+function vowelString(vowles){
+ if(vowles.includes("a")||vowles.includes("e") || vowles.includes("i") ||vowles.includes("o") || vowles.includes("u")){
+        return true
+    }else{
+        return false
+    }
+}
+vowelString(str) ?
+console.log(`${str} is a vowel`): console.log(`${str} is not a vowel`)
+
+output:
+rjin is a vowel
+--------------------------------------------------------------
+scnerio:70 reverse the string using for loop
+let str ="HelloWorld"
+let rev =''
+for(let i=str.length-1;i>=0;i--){
+    rev += str[i]
+}
+console.log(rev)
+
+output:
+dlroWolleH
+-----------------------------------------------
+scnerio:71:
+function isEqual() {
+    let a = [1, 2, 3, 5];
+    let b = [1, 2, 3, 5];
+ 
+    // If length is not equal
+    if (a.length != b.length)
+        return "False";
+    else {
+ 
+        // Comparing each element of array
+        for (let i = 0; i < a.length; i++)
+            if (a[i] != b[i])
+                return "False";
+        return "True";
+    }
+}
+let v = isEqual();
+ 
+console.log(v);
+
+output:
+True
+
+------------------------------
+scnerio:72:
+//intersection of two arrays
+
+let arr1=[1,2,3,4,5]
+let arr2=[2,4,5,95,8]
+let interaction  =arr1.filter((item)=>{
+    return arr2.includes(item)
+})
+console.log(interaction)
+
+output:
+[ 2, 4, 5 ]
+---------------------------------
+scnerio:73
+//union of two arrays
+let arr1=[1,2,3,4,5]
+let arr2=[2,4,5,95,8]
+
+let unionArr = [...arr1,...arr2]
+console.log(unionArr)
+
+output:
+[
+    1, 2, 3,  4, 5,
+    2, 4, 5, 95, 8
+  ]
+  ---------------------------------------
+  scnerio:74
+  //fibnocc's sequence eg:
+// 1,1,2,3,5,8,13,21 ->previous and current will and generator next as a new number
+
+let a =0;b=1;
+for(let i=0;i<10;i++){
+    let temp = a+b
+    a=b
+    b=temp
+    console.log(temp)
+}
+
+output:
+1
+2
+3
+5
+8
+13
+21
+34
+55
+89
+----------------------------------------------------------
+scnerio:75
+//Tables 
+
+function tables(num){
+    for(let i =1;i<=10;i++){
+        let res = i* num
+        console.log(`${num} * ${i} = ${res}`)
+    }
+}
+tables(5)
+output:
+5 * 1 = 5
+5 * 2 = 10
+5 * 3 = 15
+5 * 4 = 20
+5 * 5 = 25
+5 * 6 = 30
+5 * 7 = 35
+5 * 8 = 40
+5 * 9 = 45
+5 * 10 = 50
+-------------------------------------
+scnerio:76
+//Armstrong number
+// 153 = 1*1*1+5*5*5 +3*3*3 ouput is 153
+let number =92727
+let temp = number,sum =0
+let numberLenth = number.toString().length
+while(temp>0){
+    let remainder = temp%10
+    sum += remainder ** numberLenth
+    temp = parseInt(temp/10)
+}
+console.log(sum)
+
+output:
+92727
+----------------------------------------------
+scnerio:77
+let person ={
+    name:"Arjun",
+    age:27,
+    printInfo:function(){
+        console.log(`My name is ${this.name} and my age is ${this.age}`)
+    }
+}
+person.printInfo()
+
+output:
+My name is Arjun and my age is 27
+----------------------------------------------
+scnerio:78 
+console.log("3" + 2)
+console.log("2" - 2)
+console.log("a" - "b")
+
+output:
+32
+0
+NaN
+-------------------------
+scnerio:79
+//TO identify the non repeating character in string
+let str1 = "abcabe"
+
+function nonRepeat(str){
+    let arr =[]
+    for(let i=0;i<str.length;i++){
+        let j = str.charAt(i)
+        console.log(j)
+        if(str.indexOf(j) == str.lastIndexOf(j)){
+            console.log(j)
+            arr.push(j)
+        }
+    }
+    console.log(arr)
+
+    // or
+
+    // let obj={}
+    // for(let char of str){
+    //     if(char in obj){
+    //         obj[char]++
+    //     }else{
+    //         obj[char] =1
+    //     }
+    // }
+    // let minVal =1,minChar=[];
+    // for(let char in obj){
+    //     if(obj[char]<= minVal){
+    //         minChar.push(char)
+    //     }
+    // }
+    // console.log(obj,minChar)
+}
+nonRepeat(str1)
+//  or
+
+
+output:
+a
+b
+c
+c
+a
+b
+e
+e
+[ 'c', 'e' ]
+----------------------------------------------------------------------------------------------------------
+scnerio 80:
+const OMITTED_WORDS = ["a", "the", "and", "or", "but"];
+//input box typing 
+inputboxText ="this is a test sentence"
+const getProcessedText = () => {
+    let words = inputText.split(" ");
+       let remainingWords = words.filter(word => !OMITTED_WORDS.includes(word.toLowerCase()));
+       return remainingWords.join(" ");
+     }
+
+     output:
+this is test sentence
+-----------------------------------------------------------------------------------------------------------------
+scnerio:81
+const a = [1,2,3,2,3,4,5,6,6,1,2,3]
+
+
+const nonRepeatedArr =[]
+ a.map((item)=>{
+    const filterArr = a.filter(obj=>obj == item)
+    if(filterArr.length ==1){
+        nonRepeatedArr.push([...filterArr])
+    }
+})
+
+const removeArr = nonRepeatedArr.flat(2)
+console.log('removeArr',removeArr)
+
+//ouptut:
+"removeArr" [ 4, 5 ]
+============================
+// scnerio:82
+function add (){
+    setTimeout(()=>{
+        console.log(i)
+    },1000)
+    var i=1 || let i=1 ||const i=1
+ }
+ 
+ add()
+ output:
+ 1
+ ==========================
+//  scnerio:83
+
+
+const data = [{
+    name:'menu 1',
+    id:0,
+    subItems:[{
+        name:"menu 2" 
+    }]
+},{
+    name:"menu 3",
+    subItems:[{
+        name:"menu 4",
+        subitems:[{
+            name:"menu 5"
+        },{
+            name:'menu 6'
+        }]
+    }]
+}]
+
+const arr1=[],arr2=[],arr3=[]
+const updateArr = data.map((item,index)=>{
+    arr1.push(...[item.name])
+    let findSubItems= data[index].subItems
+      const subName = findSubItems.map(ele => ele.name)
+     arr2.push(...subName)
+   
+    findSubItems.filter(obj=>{
+        const Key = Object.keys(obj)
+                 if(Key.indexOf('subitems') == 1){
+                     const subItemsNames = obj.subitems.map(ele=>ele.name)
+                     arr3.push(...subItemsNames)
+                 }
+
+        
+        
+    })
+    
+    // if(data[index].subItems[index] == )
+    
+})
+console.log(arr1,arr2,arr3)
+
+const finalArr = [...arr1,...arr2,...arr3]
+console.log(finalArr.sort())
+
+output:
+[ 'menu 1', 'menu 3' ] [ 'menu 2', 'menu 4' ] [ 'menu 5', 'menu 6' ]
+[ 'menu 1', 'menu 2', 'menu 3', 'menu 4', 'menu 5', 'menu 6' ]
+============================================
+scnerio:84
+const arr =[1,2,3,5,6]
+count =10
+// missing numbers
+
+const output=[]
+for(let i =1;i<count;i++){
+    if(arr.indexOf(i)==-1){
+        output.push(i)
+    }
+}
+console.log(output)
+output:
+[ 4, 7, 8, 9 ]
+=================
+scnerio:85
+const arr =[5,5,5,2,2,2,4,4,2,1,1,]
+
+const count={}
+
+arr.map(item=>{
+    !count[item]?count[item]=1:count[item]++
+})
+console.log(count)
+output:
+{ '1': 2, '2': 4, '4': 2, '5': 3 }
+===============================================================
+scnerio:86
+const arr =['22-33-44','66-11-33','100-33-44']
+
+const output = arr.map(item=>{
+    let splitArr = item.split("-")
+    const max= Math.max(...splitArr)
+    return max
+})
+console.log(output)
+
+output:
+[ 44, 66, 100 ]
+============================
+scnerio:87
+const str ="write a function in longest word in string"
+
+const split = str.split(" ")
+console.log(split)
+
+let count =0,word=''
+split.map(item=>{
+    if(item.length >=count){
+        count = item.length
+        word = item
+    }
+})
+console.log(count,word)
+output:
+[
+    'write',    'a',
+    'function', 'in',
+    'longest',  'word',
+    'in',       'string'
+  ]
+  8 function
+  ======================
+  scnerio:88
+  //string longest string and shortest string in array
+  const str ="write a function in longest word in string"
+
+const split = str.split(" ")
+console.log(split)
+
+
+const sortLongesttArr = split.sort((a,b)=>b.length - a.length)[0]
+console.log('sortArr',sortLongesttArr)
+
+const sortShortestArr = split.sort((a,b)=>a.length - b.length)[0]
+console.log('sortShortestArr',sortShortestArr)
+
+output:
+[
+    'write',    'a',
+    'function', 'in',
+    'longest',  'word',
+    'in',       'string'
+  ]
+  sortArr function
+  sortShortestArr a
+  =====================
+  scnerio:89
+  for (var i = 0; i < 3; i++) {
+    // console.log(i); 
+}
+
+console.log(i);
+output:
+3
+or
+for (var i = 0; i <= 3; i++) {
+    // console.log(i); 
+}
+
+console.log(i);
+output:
+4
+=============================
+scnerio:90
+//function composition
+function add(x) {
+    return x + 2;
+}
+function mul(x) {
+    return x * 3;
+}
+
+
+function compose(f, g) {
+    console.log(f,g)
+    return function(x) {
+        return f(g(x))
+        
+  };
+}
+var res = compose(mul,add)(4);
+console.log(res);
+
+output:
+[Function: mul] [Function: add] undefined
+4
+18
+=============================
+scnerio:91
+
+
+const compose = (...fns) =>
+  fns.reduce((f, g) => (...args) => f(g(...args)));
+
+const digitize = n => [...`${n}`].map(i => parseInt(i));
+const add5 = x => x + 5;
+const multiply = (x, y) => x * y;
+
+const composedFn = compose(
+  digitize,
+  add5,
+  multiply
+);
+composedFn(5, 2); // [1, 5]
+======================================================
+scnerio:92
+//forevery 3 we you need to  fizz 
+//for every 5 you need to showw fizzbuzz
+//For 15 you need to show the fizzbuzz
+
+
+for(let i =1 ;i<=15;i++){
+     
+    if(i%3 ==0 && i%5==0){
+        console.log('fizzbuzz')
+        ++i
+    }
+     if(i%3===0){
+       console.log('fizz')
+       ++i
+   }
+    
+   if(i%5 === 0){
+        console.log('buzz')
+       ++i
+   }
+     if(i%3===0){
+       console.log('fizz')
+       ++i
+   }
+   if(i>15){
+       break;
+   }
+      else console.log(i)
+
+}
+
+output:
+1
+2
+fizz
+4
+buzz
+fizz
+7
+8
+fizz
+buzz
+11
+fizz
+13
+14
+fizzbuzz
+==================================================
+scnerio:93
+//arr input arr =[2,12,3,4,4,5,3,4]
+//n=3
+//output: [[1,12,3],[4,4,5],[3,4]]
+
+
+const arr =[2,12,3,4,4,5,3,4],n=3
+const chunked =[]
+for(let ele of arr){
+    let last = chunked [chunked.length -1]
+    if(!last || last.length == n){
+        chunked.push([ele])
+    }
+    else{
+        last.push(ele)
+    }
+}
+console.log(chunked)
+
+output:
+[ [ 2, 12, 3 ], [ 4, 4, 5 ], [ 3, 4 ] ]
+===================================================
+scnerio:94
+const obj ={x:10,y:20}
+Object.freeze(obj)
+const update =obj
+update.x=20
+console.log(update,obj)
+
+output:
+{ x: 10, y: 20 } { x: 10, y: 20 }
+
+// === Code Execution Successful ===
+==============================
+scnerio:95
+console.log(+"1"+"1"+"1")
+console.log(1+ +"1"+"1"+"1")
+console.log(1-"1"+"1")
+console.log("a"-"b")
+
+o/p:
+111
+211
+01
+NaN
+
+==========================
+scnerio:96
+// x will be object
+let x ={
+    flag:1,
+    toString:function(){
+        return this.flag++
+    }
+}
+
+
+if(x==1&& x==2 && x==3){
+    console.log("hello",x)
+}
+
+o/p
+hello { flag: 4, toString: [Function: toString] }
+=======================
+scnerio:97
+const obj={
+    a:1,
+    b:2
+    a:2
+}
+console.log(obj)
+
+o/p:
+SyntaxError: Unexpected identifier 'a'
+==========================
+scnerio:98
+if([]){
+    console.log("init")
+}
+console.log([]==true)
+
+
+if([]== true){
+    console.log("hello")
+}
+
+o/p
+init
+false
+==========================
+scenerio:99
+//object seal cannot delete and  add  add ,only we can modify the data
+let obj ={name:"arjun",age:25}
+Object.seal(obj)
+delete obj.name
+obj.phno =303333
+obj.age =30
+console.log(obj)
+
+
+//object.freeze -you cannot delete and add and modify
+let obj1 ={name:"arjun",age:25}
+Object.freeze(obj1)
+delete obj1.name
+obj1.phno =303333
+obj1.age =30
+console.log(obj1)
+
+o/p:
+{ name: 'arjun', age: 30 }
+{ name: 'arjun', age: 25 }
+=========================================================
+scnerio:100
+memo in react example
+import {memo}from react
+
+const Greeting = memo(function Greeting(){
+    return <h1>{name}</h1>
+})
+
+<Greeting name={"Arjun"}/>
+
+o/p
+Arjun will print in the UI
+================================================================
